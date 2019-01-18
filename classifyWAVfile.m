@@ -1,5 +1,3 @@
-
-
 addpath(genpath(pwd)); %add current path and subfolders
 filename = 'demogitdrum.wav';
 windowlength = 1;
@@ -42,8 +40,9 @@ ax3=subplot(2,1,2);
 
 ax2 = subplot(2,1,1);
 for ij= 1:n_predicts  %iterate through every window, overlap? ->draw over and over each iteration
-   pause(1);
-   subplot(2,1,1);
+    pause(1);
+    
+    subplot(2,1,1);
     current_y2 = demofile((ij-1)*fs+1:ij*fs);
     color_id=0;
     keys=labelMap.keys;
@@ -54,20 +53,20 @@ for ij= 1:n_predicts  %iterate through every window, overlap? ->draw over and ov
         end
     end
  
- current_x = (ij-1)*fs+1:1:ij*fs;
+    current_x = (ij-1)*fs+1:1:ij*fs;
  
- stretch=1/fs; %samplerate and windowlength modify this factor
- grid on
- ax=gca;
- ax.YGrid='off';
- %xticks(0:1:n_predicts)
+    stretch=1/fs; %samplerate and windowlength modify this factor
+    grid on
+    ax=gca;
+    ax.YGrid='off';
+    %xticks(0:1:n_predicts)
  
  
- subplot(2,1,1);
- plot(current_x*stretch,current_y2,'Color',cmap(color_id ,:),'LineWidth',2);
- hold on
+    subplot(2,1,1);
+    plot(current_x*stretch,current_y2,'Color',cmap(color_id ,:),'LineWidth',2);
+    hold on
  
-     color_id=0;
+    color_id=0;
     keys=labelMap.keys;
     for j = 1:numel(labelMap.keys)
     key = keys{j};
@@ -75,23 +74,23 @@ for ij= 1:n_predicts  %iterate through every window, overlap? ->draw over and ov
             color_id=j;
         end
     end 
- current_x = (ij-1)*fs+1:1:ij*fs;
- subplot(2,1,2);
- plot(current_x*stretch,current_y*(1+color_id/n/4),'Color',cmap(color_id ,:),'LineWidth',10);
- grid on
- ax=gca;
- ax.YGrid='off';
- %xticks(0:1:n_predicts)
+    current_x = (ij-1)*fs+1:1:ij*fs;
+    subplot(2,1,2);
+    plot(current_x*stretch,current_y*(1+color_id/n/4),'Color',cmap(color_id ,:),'LineWidth',10);
+    grid on
+    ax=gca;
+    ax.YGrid='off';
+    %xticks(0:1:n_predicts)
   
- hold on
+    hold on
 
  
-  ylim([0.5 2])
-p1=plot(1,1,'Color',cmap(1 ,:),'LineWidth',10);
-hold on
-p2=plot(1,1,'Color',cmap(2 ,:),'LineWidth',10);
+    ylim([0.5 2])
+    p1=plot(1,1,'Color',cmap(1 ,:),'LineWidth',10);
+    hold on
+    p2=plot(1,1,'Color',cmap(2 ,:),'LineWidth',10);
 
-legend([p1 p2],{'DRUMS','GUITAR'},'Location','north','NumColumns',2)
+    legend([p1 p2],{'DRUMS','GUITAR'},'Location','north','NumColumns',2)
 end
 
 
